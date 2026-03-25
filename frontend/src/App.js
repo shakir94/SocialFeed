@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  App.js — Root component with routing + auth protection
-// ─────────────────────────────────────────────────────────────
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';

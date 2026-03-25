@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  middleware/authMiddleware.js — JWT verification middleware
-// ─────────────────────────────────────────────────────────────
+
 const jwt = require('jsonwebtoken');
 
 /**

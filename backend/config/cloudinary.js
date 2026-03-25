@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  config/cloudinary.js — Cloudinary + Multer storage setup
-// ─────────────────────────────────────────────────────────────
+
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
@@ -16,9 +14,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'social-app/posts',                        // Cloudinary folder name
+    folder: 'social-app/posts',                        
     allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-    transformation: [{ width: 1080, crop: 'limit', quality: 'auto' }], // Auto-optimize
+    transformation: [{ width: 1080, crop: 'limit', quality: 'auto' }], 
   },
 });
 

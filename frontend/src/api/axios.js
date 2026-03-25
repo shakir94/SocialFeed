@@ -1,7 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  api/axios.js — Configured Axios instance
-//  Auto-attaches Bearer token to every request
-// ─────────────────────────────────────────────────────────────
+
 import axios from 'axios';
 
 const API = axios.create({

@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  models/User.js — MongoDB User schema (Collection: users)
-// ─────────────────────────────────────────────────────────────
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
@@ -28,7 +26,7 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt automatically
+    timestamps: true, 
   }
 );
 

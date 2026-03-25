@@ -11,31 +11,31 @@ const app = express();
 app.use(cors());
 app.options('*', cors());
 
-// ── Body parsers ─────────────────────────────────────────────
+// ── Body parsers ───────────────────
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// ── Routes ───────────────────────────────────────────────────
+// ── Routes ──────────────────
 app.use('/api/auth',  require('./routes/authRoutes'));
 app.use('/api/posts', require('./routes/postRoutes'));
 
-// ── Health check ─────────────────────────────────────────────
+// ── Health check ────────
 app.get('/', (req, res) => {
   res.json({ status: 'ok', message: 'Social App API is running 🚀' });
 });
 
-// ── 404 handler ──────────────────────────────────────────────
+// ── 404 handler ────────────
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// ── Global error handler ─────────────────────────────────────
+// ── Global error handler ─────────────────
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
   res.status(500).json({ message: 'Internal server error' });
 });
 
-// ── Connect to MongoDB and start server ──────────────────────
+// ── Connect to MongoDB and start server ───────────
 const PORT = process.env.PORT || 5000;
 
 mongoose

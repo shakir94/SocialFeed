@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  pages/Signup.js — Account creation page
-// ─────────────────────────────────────────────────────────────
+
 import React, { useState } from 'react';
 import { Form, Button, Alert, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';

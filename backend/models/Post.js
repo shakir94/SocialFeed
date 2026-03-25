@@ -1,7 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  models/Post.js — MongoDB Post schema (Collection: posts)
-//  Contains embedded comments sub-schema for efficiency
-// ─────────────────────────────────────────────────────────────
+
 const mongoose = require('mongoose');
 
 // ── Embedded Comment Schema ───────────────────────────────────

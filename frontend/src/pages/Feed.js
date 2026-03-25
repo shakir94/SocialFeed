@@ -1,7 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  pages/Feed.js
-//  Main feed: create post + paginated posts + load more
-// ─────────────────────────────────────────────────────────────
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { FiRefreshCw } from 'react-icons/fi';

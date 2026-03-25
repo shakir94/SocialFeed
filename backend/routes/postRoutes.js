@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  routes/postRoutes.js — Post CRUD, like/unlike, comment
-// ─────────────────────────────────────────────────────────────
+
 const express  = require('express');
 const router   = express.Router();
 const mongoose = require('mongoose');

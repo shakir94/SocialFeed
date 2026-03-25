@@ -1,7 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  components/CreatePost.js
-//  Post composer card — text, image upload, live preview
-// ─────────────────────────────────────────────────────────────
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Spinner, Alert } from 'react-bootstrap';
 import { FiImage, FiSend, FiX } from 'react-icons/fi';

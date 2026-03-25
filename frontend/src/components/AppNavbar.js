@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  components/AppNavbar.js — Top navigation bar
-// ─────────────────────────────────────────────────────────────
+
 import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';

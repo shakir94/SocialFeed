@@ -1,21 +1,19 @@
-// ─────────────────────────────────────────────────────────────
-//  routes/authRoutes.js — Signup and Login endpoints
-// ─────────────────────────────────────────────────────────────
+
 const express = require('express');
 const router  = express.Router();
 const bcrypt  = require('bcryptjs');
 const jwt     = require('jsonwebtoken');
 const User    = require('../models/User');
 
-// ── Helper: generate JWT ──────────────────────────────────────
+// ── Helper: generate JWT ──────────
 const generateToken = (user) =>
   jwt.sign(
-    { id: user._id.toString(), username: user.username }, // toString() ensures plain string in payload
+    { id: user._id.toString(), username: user.username }, 
     process.env.JWT_SECRET,
     { expiresIn: '7d' }
   );
 
-// ── POST /api/auth/signup ─────────────────────────────────────
+// ── POST /api/auth/signup ──────────────────
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -50,7 +48,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// ── POST /api/auth/login ──────────────────────────────────────
+// ── POST /api/auth/login ──────────────────
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 

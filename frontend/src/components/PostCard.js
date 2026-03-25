@@ -1,7 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-//  components/PostCard.js
-//  Renders a single post with likes, comments, delete
-// ─────────────────────────────────────────────────────────────
+
 import React, { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import {
