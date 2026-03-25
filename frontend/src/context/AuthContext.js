@@ -1,4 +1,6 @@
-
+// ─────────────────────────────────────────────────────────────
+//  context/AuthContext.js — Global auth state via React Context
+// ─────────────────────────────────────────────────────────────
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext(null);

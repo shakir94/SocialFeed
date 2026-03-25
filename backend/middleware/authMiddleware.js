@@ -1,7 +1,12 @@
-
+// ─────────────────────────────────────────────────────────────
+//  middleware/authMiddleware.js — JWT verification middleware
+// ─────────────────────────────────────────────────────────────
 const jwt = require('jsonwebtoken');
 
-
+/**
+ * protect — Verifies the JWT token from the Authorization header.
+ * Attaches decoded user payload to req.user on success.
+ */
 const protect = (req, res, next) => {
   // Extract token from "Bearer <token>" header
   const authHeader = req.headers.authorization;

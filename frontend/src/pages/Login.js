@@ -1,4 +1,6 @@
-
+// ─────────────────────────────────────────────────────────────
+//  pages/Login.js — Login page with email + password
+// ─────────────────────────────────────────────────────────────
 import React, { useState } from 'react';
 import { Form, Button, Alert, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';

@@ -1,4 +1,6 @@
-
+// ─────────────────────────────────────────────────────────────
+//  components/AppNavbar.js — Top navigation bar
+// ─────────────────────────────────────────────────────────────
 import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +20,7 @@ const AppNavbar = () => {
   return (
     <Navbar className="app-navbar">
       <Container style={{ maxWidth: 660 }}>
-        
+        {/* Brand */}
         <Navbar.Brand className="navbar-brand-custom me-auto">
           🌐 SocialFeed
         </Navbar.Brand>

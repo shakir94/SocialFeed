@@ -1,4 +1,6 @@
-
+// ─────────────────────────────────────────────────────────────
+//  routes/postRoutes.js — Post CRUD, like/unlike, comment
+// ─────────────────────────────────────────────────────────────
 const express  = require('express');
 const router   = express.Router();
 const mongoose = require('mongoose');
@@ -32,7 +34,7 @@ router.post('/', protect, handleUpload, async (req, res) => {
 
   try {
     const post = await Post.create({
-      userId:   new mongoose.Types.ObjectId(req.user.id), 
+      userId:   new mongoose.Types.ObjectId(req.user.id), // explicit cast from JWT string
       username: req.user.username,
       text:     text?.trim() || '',
       imageUrl,
@@ -116,7 +118,7 @@ router.post('/:id/comment', protect, async (req, res) => {
     if (!post) return res.status(404).json({ message: 'Post not found' });
 
     const newComment = {
-      userId:   new mongoose.Types.ObjectId(req.user.id), 
+      userId:   new mongoose.Types.ObjectId(req.user.id), // explicit cast from JWT string
       username: req.user.username,
       text:     text.trim(),
     };

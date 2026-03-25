@@ -1,3 +1,6 @@
+// ─────────────────────────────────────────────────────────────
+//  App.js — Root component with routing + auth protection
+// ─────────────────────────────────────────────────────────────
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
@@ -47,7 +50,7 @@ const PublicRoute = ({ children }) => {
   return user ? <Navigate to="/" replace /> : children;
 };
 
-// ── App Routes ─────────────────
+// ── App Routes ───────────────────────────────────────────────
 const AppRoutes = () => (
   <Routes>
     {/* Public routes */}

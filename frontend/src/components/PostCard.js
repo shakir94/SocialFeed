@@ -1,4 +1,7 @@
-
+// ─────────────────────────────────────────────────────────────
+//  components/PostCard.js
+//  Renders a single post with likes, comments, delete
+// ─────────────────────────────────────────────────────────────
 import React, { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import {
@@ -13,7 +16,7 @@ import API from '../api/axios';
 const PostCard = ({ post, onDelete }) => {
   const { user } = useAuth();
 
- 
+  // ── Local state (optimistic UI updates) ──────────────────
   const [likes,         setLikes]         = useState(post.likes || []);
   const [comments,      setComments]      = useState(post.comments || []);
   const [showComments,  setShowComments]  = useState(false);
@@ -28,7 +31,7 @@ const PostCard = ({ post, onDelete }) => {
     ? post.userId?.toString() === user.id || post.username === user.username
     : false;
 
-  // ── Toggle like (optimistic update) ─────────────
+  // ── Toggle like (optimistic update) ─────────────────────
   const handleLike = async () => {
     if (!user || likeLoading) return;
 
@@ -42,16 +45,16 @@ const PostCard = ({ post, onDelete }) => {
     setLikeLoading(true);
     try {
       const res = await API.put(`/posts/${post._id}/like`);
-      setLikes(res.data.likes); 
+      setLikes(res.data.likes); // Sync with server truth
     } catch (err) {
-      setLikes(likes); 
+      setLikes(likes); // Rollback on error
       console.error('Like error:', err.message);
     } finally {
       setLikeLoading(false);
     }
   };
 
-  // ── Submit comment ─────────────
+  // ── Submit comment ────────────────────────────────────────
   const handleComment = async (e) => {
     if (e?.preventDefault) e.preventDefault();
     if (!commentText.trim() || commentLoading) return;
@@ -70,7 +73,7 @@ const PostCard = ({ post, onDelete }) => {
     }
   };
 
-  // ── Handle Enter key in comment box ────
+  // ── Handle Enter key in comment box ──────────────────────
   const handleCommentKey = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -78,7 +81,7 @@ const PostCard = ({ post, onDelete }) => {
     }
   };
 
-  // ── Delete post ───────────
+  // ── Delete post ───────────────────────────────────────────
   const handleDelete = async () => {
     if (!window.confirm('Delete this post? This cannot be undone.')) return;
     setDeleteLoading(true);
@@ -93,7 +96,7 @@ const PostCard = ({ post, onDelete }) => {
 
   return (
     <div className="post-card">
-      {/* ── Header ──────────────────*/}
+      {/* ── Header ───────────────────────────────────────── */}
       <div className="post-header">
         <div className="post-header-left">
           <div className={`post-avatar ${getAvatarClass(post.username)}`}>
@@ -121,10 +124,10 @@ const PostCard = ({ post, onDelete }) => {
         )}
       </div>
 
-      {/* ── Post Text ──────────────── */}
+      {/* ── Post Text ────────────────────────────────────── */}
       {post.text && <p className="post-text">{post.text}</p>}
 
-      {/* ── Post Image ─────────────────── */}
+      {/* ── Post Image ───────────────────────────────────── */}
       {post.imageUrl && (
         <img
           src={post.imageUrl}
@@ -156,7 +159,7 @@ const PostCard = ({ post, onDelete }) => {
         </div>
       )}
 
-      {/* ── Action Buttons ───────────── */}
+      {/* ── Action Buttons ───────────────────────────────── */}
       <div className="post-actions">
         {/* Like button */}
         <button
@@ -181,7 +184,7 @@ const PostCard = ({ post, onDelete }) => {
         </button>
       </div>
 
-      {/* ── Comments Section ──────────── */}
+      {/* ── Comments Section ─────────────────────────────── */}
       {showComments && (
         <div className="comments-section">
           {/* Comments list */}

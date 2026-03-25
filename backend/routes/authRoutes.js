@@ -1,4 +1,6 @@
-
+// ─────────────────────────────────────────────────────────────
+//  routes/authRoutes.js — Signup and Login endpoints
+// ─────────────────────────────────────────────────────────────
 const express = require('express');
 const router  = express.Router();
 const bcrypt  = require('bcryptjs');
@@ -8,7 +10,7 @@ const User    = require('../models/User');
 // ── Helper: generate JWT ──────────────────────────────────────
 const generateToken = (user) =>
   jwt.sign(
-    { id: user._id.toString(), username: user.username }, 
+    { id: user._id.toString(), username: user.username }, // toString() ensures plain string in payload
     process.env.JWT_SECRET,
     { expiresIn: '7d' }
   );
@@ -17,7 +19,7 @@ const generateToken = (user) =>
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
-
+  // Basic validation
   if (!username || !email || !password) {
     return res.status(400).json({ message: 'All fields are required' });
   }

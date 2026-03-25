@@ -1,4 +1,7 @@
-
+// ─────────────────────────────────────────────────────────────
+//  components/CreatePost.js
+//  Post composer card — text, image upload, live preview
+// ─────────────────────────────────────────────────────────────
 import React, { useState, useRef, useEffect } from 'react';
 import { Spinner, Alert } from 'react-bootstrap';
 import { FiImage, FiSend, FiX } from 'react-icons/fi';
@@ -42,7 +45,7 @@ const CreatePost = ({ onPostCreated }) => {
     setError('');
   };
 
-  // ── Remove selected image ────────
+  // ── Remove selected image ─────────────────────────────────
   const removeImage = () => {
     // Revoke the object URL to free memory
     if (imagePreview) URL.revokeObjectURL(imagePreview);
@@ -51,7 +54,7 @@ const CreatePost = ({ onPostCreated }) => {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  // ── Submit post ────
+  // ── Submit post ───────────────────────────────────────────
   const handleSubmit = async () => {
     if (!text.trim() && !imageFile) {
       setError('Please write something or add an image.');
