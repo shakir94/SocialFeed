@@ -8,8 +8,22 @@ const Post     = require('../models/Post');
 const protect  = require('../middleware/authMiddleware');
 const { upload } = require('../config/cloudinary');
 
+// ── Multer error handler — wraps upload to return clean JSON errors ──
+const handleUpload = (req, res, next) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      // Multer-specific errors (file size, file type)
+      if (err.code === 'LIMIT_FILE_SIZE') {
+        return res.status(400).json({ message: 'Image must be smaller than 5MB' });
+      }
+      return res.status(400).json({ message: err.message || 'Image upload failed' });
+    }
+    next();
+  });
+};
+
 // ── POST /api/posts — Create a new post ──────────────────────
-router.post('/', protect, upload.single('image'), async (req, res) => {
+router.post('/', protect, handleUpload, async (req, res) => {
   const { text } = req.body;
   const imageUrl = req.file ? req.file.path : '';
 

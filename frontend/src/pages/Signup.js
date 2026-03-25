@@ -8,6 +8,26 @@ import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import API from '../api/axios';
 
+// ── InputGroup defined OUTSIDE component so its reference never
+//    changes between renders — prevents input losing focus on every keystroke
+const InputGroup = ({ icon: Icon, name, type = 'text', placeholder, autoComplete, value, onChange }) => (
+  <div className="input-group">
+    <span className="input-group-text border-end-0" style={{ borderRadius: '10px 0 0 10px' }}>
+      <Icon color="#65676B" />
+    </span>
+    <Form.Control
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      required
+      autoComplete={autoComplete}
+      style={{ borderRadius: '0 10px 10px 0', borderLeft: 'none' }}
+    />
+  </div>
+);
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: '', email: '', password: '', confirmPassword: '',
@@ -57,25 +77,6 @@ const Signup = () => {
     }
   };
 
-  // Reusable input group helper
-  const InputGroup = ({ icon: Icon, name, type = 'text', placeholder, autoComplete }) => (
-    <div className="input-group">
-      <span className="input-group-text border-end-0" style={{ borderRadius: '10px 0 0 10px' }}>
-        <Icon color="#65676B" />
-      </span>
-      <Form.Control
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        value={formData[name]}
-        onChange={handleChange}
-        required
-        autoComplete={autoComplete}
-        style={{ borderRadius: '0 10px 10px 0', borderLeft: 'none' }}
-      />
-    </div>
-  );
-
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -95,22 +96,22 @@ const Signup = () => {
         <Form onSubmit={handleSubmit} noValidate>
           <Form.Group className="mb-3">
             <Form.Label className="fw-semibold" style={{ fontSize: 14, color: '#65676B' }}>Username</Form.Label>
-            <InputGroup icon={FiUser} name="username" placeholder="Choose a username" autoComplete="username" />
+            <InputGroup icon={FiUser} name="username" placeholder="Choose a username" autoComplete="username" value={formData.username} onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label className="fw-semibold" style={{ fontSize: 14, color: '#65676B' }}>Email Address</Form.Label>
-            <InputGroup icon={FiMail} name="email" type="email" placeholder="Enter your email" autoComplete="email" />
+            <InputGroup icon={FiMail} name="email" type="email" placeholder="Enter your email" autoComplete="email" value={formData.email} onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label className="fw-semibold" style={{ fontSize: 14, color: '#65676B' }}>Password</Form.Label>
-            <InputGroup icon={FiLock} name="password" type="password" placeholder="Create a password (min 6 chars)" autoComplete="new-password" />
+            <InputGroup icon={FiLock} name="password" type="password" placeholder="Create a password (min 6 chars)" autoComplete="new-password" value={formData.password} onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-4">
             <Form.Label className="fw-semibold" style={{ fontSize: 14, color: '#65676B' }}>Confirm Password</Form.Label>
-            <InputGroup icon={FiLock} name="confirmPassword" type="password" placeholder="Re-enter your password" autoComplete="new-password" />
+            <InputGroup icon={FiLock} name="confirmPassword" type="password" placeholder="Re-enter your password" autoComplete="new-password" value={formData.confirmPassword} onChange={handleChange} />
           </Form.Group>
 
           <Button type="submit" className="btn-purple" disabled={loading}>

@@ -1,4 +1,6 @@
-
+// ─────────────────────────────────────────────────────────────
+//  server.js — Entry point for the Social App Express backend
+// ─────────────────────────────────────────────────────────────
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');

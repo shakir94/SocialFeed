@@ -2,7 +2,7 @@
 //  components/CreatePost.js
 //  Post composer card — text, image upload, live preview
 // ─────────────────────────────────────────────────────────────
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Spinner, Alert } from 'react-bootstrap';
 import { FiImage, FiSend, FiX } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
@@ -22,6 +22,13 @@ const CreatePost = ({ onPostCreated }) => {
 
   const fileInputRef = useRef(null);
 
+  // ── Revoke object URL on unmount to prevent memory leak ──
+  useEffect(() => {
+    return () => {
+      if (imagePreview) URL.revokeObjectURL(imagePreview);
+    };
+  }, [imagePreview]);
+
   // ── Handle image selection ────────────────────────────────
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -40,6 +47,8 @@ const CreatePost = ({ onPostCreated }) => {
 
   // ── Remove selected image ─────────────────────────────────
   const removeImage = () => {
+    // Revoke the object URL to free memory
+    if (imagePreview) URL.revokeObjectURL(imagePreview);
     setImageFile(null);
     setImagePreview('');
     if (fileInputRef.current) fileInputRef.current.value = '';
