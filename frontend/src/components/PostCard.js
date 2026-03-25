@@ -25,11 +25,8 @@ const PostCard = ({ post, onDelete }) => {
   const [commentLoading,setCommentLoading]= useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  const isLiked  = user ? likes.includes(user.username) : false;
-  // post.userId may be ObjectId or string depending on serialization — toString() normalizes both
-  const isMyPost = user
-    ? post.userId?.toString() === user.id || post.username === user.username
-    : false;
+  const isLiked    = user ? likes.includes(user.username) : false;
+  const isMyPost   = user ? post.userId === user.id || post.username === user.username : false;
 
   // ── Toggle like (optimistic update) ─────────────────────
   const handleLike = async () => {
