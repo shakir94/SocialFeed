@@ -1,0 +1,22 @@
+# ─────────────────────────────────────────────────────────────
+#  render.yaml — Render deployment config for backend
+#  Docs: https://render.com/docs/blueprint-spec
+# ─────────────────────────────────────────────────────────────
+
+services:
+  - type: web
+    name: socialfeed-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      # Set these manually in Render dashboard (sensitive values):
+      # MONGO_URI, JWT_SECRET, CLOUDINARY_CLOUD_NAME,
+      # CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLIENT_URL
+    healthCheckPath: /
+    autoDeploy: true
